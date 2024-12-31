@@ -1,5 +1,3 @@
-// Note: you might want to change the ssh_keys to your key(s)
-
 import 'dotenv/config'
 
 export const createServer = async (name) => {
@@ -22,7 +20,7 @@ export const createServer = async (name) => {
             },
             "server_type": "cx22",
             "ssh_keys": [
-              "kevin@ghost"
+              process.env.SSH_KEY
             ],
             "start_after_create": true,      
         })
