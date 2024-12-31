@@ -12,7 +12,7 @@
 - hetz-prompt [//]: <> (This is an interactive prompt that asks what crud action you want to perform like in the examples below)
 
 2. CLI / One-liners:
-- hetz-cli create <name>
-- hetz-cli read <name>
-- hetz-cli update <name>,<new name>
-- hetz-cli delete <name>
+- hetz-cli create NAME
+- hetz-cli read NAME
+- hetz-cli update NAME,NEW_NAME
+- hetz-cli delete NAME
