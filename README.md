@@ -1,7 +1,7 @@
 ### Instructions:
 - git clone https://github.com/aplstroedel/hetznerize.git
 - cd hetznerize
-- mv .example.env .env    **Comment:** Make sure to modify the variables for having the correct values
+- mv .example.env .env    > Make sure to modify the variables for having the correct values
 - sudo mv cli.sh /usr/local/bin/hetz-cli
 - sudo mv prompt.sh /usr/local/bin/hetz-prompt
 - npm install
