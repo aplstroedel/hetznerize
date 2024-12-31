@@ -5,7 +5,7 @@
 - sudo mv cli.sh /usr/local/bin/hetz-cli
 - sudo mv prompt.sh /usr/local/bin/hetz-prompt
 - npm install
-- node index.js \# As downloaded, this will run on port 7000
+- node index.js \# Running on port 7000 by default
 
 ### Usage:
 1. Interactive prompt:
