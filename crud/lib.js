@@ -1,3 +1,5 @@
+// Note: you might want to change the ssh_keys to your key(s)
+
 import 'dotenv/config'
 
 export const createServer = async (name) => {
