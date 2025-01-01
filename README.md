@@ -13,7 +13,7 @@ node index.js OR docker-compose up -d # Running on port 7000 by default
 ### Usage:
 1. Interactive prompt:
 ```bash
- hetz-prompt # This is an interactive prompt that asks what crud action you want to perform like in the examples below
+ hetz-prompt # An interactive for crud actions you want to perform like in the examples below
 ```
 
 2. CLI / One-liners:
