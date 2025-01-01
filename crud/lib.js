@@ -45,7 +45,7 @@ export const readServer = async (name=null) => {
     } else if (result.servers.length > 1) {
         let servers = []
         result.servers.forEach(s => {
-            servers.push(s.name)
+            servers.push({id: s.id, name: s.name, ip: s.public_net.ipv4.ip})
         });
         return {
             action: {
