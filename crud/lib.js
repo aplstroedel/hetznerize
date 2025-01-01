@@ -29,11 +29,9 @@ export const createServer = async (name) => {
     return result
 }
 
-export const readServer = async (name) => {
-    if (name === '') {
-        return 'no name specified to search'
-    }
-    let request = await fetch("https://api.hetzner.cloud/v1/servers?name="+name, {
+export const readServer = async (name=null) => {
+    let suffix = name ? "?name="+name : ''
+    let request = await fetch("https://api.hetzner.cloud/v1/servers"+suffix, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -41,11 +39,17 @@ export const readServer = async (name) => {
         }
     })
     let result = await request.json()
-    if (result.servers[0]) {
+    if (result.servers.length == 1 ) {
         let serverID = result.servers[0].id
         return serverID
+    } else if (result.servers.length > 1) {
+        let servers = []
+        result.servers.forEach(s => {
+            servers.push(s.name)
+        });
+        return servers
     } else {
-        return 'no such server'
+        return 'no servers to show'
     }
 }
 

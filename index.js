@@ -24,6 +24,13 @@ fastify.post('/read', async (req, rep)=>{
     rep.send(result)
 })
 
+// Read all
+fastify.post('/readall', async (req, rep)=>{
+    let name = req.body.name ? req.body.name : ''
+    let result = await readServer(name)
+    rep.send(result)
+})
+
 // Update
 fastify.post('/update', async (req, rep)=>{
     let id = req.body.old_name

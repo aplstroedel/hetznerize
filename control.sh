@@ -20,6 +20,9 @@ cli() {
             [[ -z $2 ]] && return
             command='curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
             ;;
+        'readall')
+            command='curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
+            ;;
         'update')
             IFS=','
             arr=($2)
@@ -37,7 +40,7 @@ cli() {
             ;;
     esac
     eval "$command"
-    [[ "$action" == @('create'|'read'|'update'|'delete') ]] && echo -e "\e[31mSUCCESS!!\e[0m" || echo -e '\e[31mFAILED!!\e[0m'
+    [[ "$action" == @('create'|'read'|'readall'|'update'|'delete') ]] && echo -e "\e[31mSUCCESS!!\e[0m" || echo -e '\e[31mFAILED!!\e[0m'
 }
 
 main() {
