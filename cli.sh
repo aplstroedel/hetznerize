@@ -2,7 +2,7 @@
 
 # Put this script somewhere between your binaries, e.g. /usr/local/bin/hetz-cli
 
-url='http://localhost:7000'
+url='http://0.0.0.0:7000'
 
 action="$1"
 input="$2"
