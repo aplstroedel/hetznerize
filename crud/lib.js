@@ -50,7 +50,6 @@ export const readServer = async (name) => {
 }
 
 export const updateServer = async (id,name) => {
-    console.log({id,name})
     if (id === '' || name === '') {
         return 'no id or name specified to update'
     }

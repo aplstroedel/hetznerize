@@ -2,6 +2,8 @@
 
 # Put this script somewhere between your binaries, e.g. /usr/local/bin/hetz-cli
 
+# TODO: wrap below in a function, make an interactive function that executes this function, depending on --interactive or not, execute the correct function
+
 url='http://0.0.0.0:7000'
 
 action="$1"
