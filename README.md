@@ -3,9 +3,7 @@
 git clone https://github.com/aplstroedel/hetznerize.git
 cd hetznerize
 mv .example.env .env # Make sure to modify the variables for having the correct values
-sudo mv control.sh /usr/local/bin/hetz-control # unified cli and prompt
-sudo mv cli.sh /usr/local/bin/hetz-cli # if you prefer oneliners
-sudo mv prompt.sh /usr/local/bin/hetz-prompt # if you prefer interactivity
+sudo mv control.sh /usr/local/bin/hetz-control # unified old cli and prompt
 npm install
 node index.js OR docker-compose up -d # Running on port 7000 by default 
 ```
