@@ -1,5 +1,7 @@
 ### Instructions:
 ```bash
+# Note: install jq as a dependcy with the packagemanager of your distribution
+sudo apt install jq -y # Debian based only
 git clone https://github.com/aplstroedel/hetznerize.git
 cd hetznerize
 mv .example.env .env # Make sure to modify the variables for having the correct values

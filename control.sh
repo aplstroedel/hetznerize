@@ -10,18 +10,18 @@ args=( "${arr[@]/\-\-prompt/}" )
 cli() {
     arg="$1"
     arg=$(echo "$arg" | xargs)
-    echo -e "\e[31m__Initializing...\e[0m"
+    echo -e "\e[31m__Initializing__\e[0m"
     case "$1" in
         'create')
             [[ -z $2 ]] && return
-            command='curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/create"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/create"; echo '''
             ;;
         'read')
             [[ -z $2 ]] && return
-            command='curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
             ;;
         'readall')
-            command='curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
             ;;
         'update')
             IFS=','
@@ -29,18 +29,19 @@ cli() {
             [[ -z $arr[0] || -z $arr[1] ]] && return
             old_name=${arr[0]}
             new_name=${arr[1]}
-            command='curl -X POST -H "Content-Type: application/json" -d "{\"old_name\":\""'$old_name'"\",\"new_name\":\""'$new_name'"\"}" "'$url'/update"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"old_name\":\""'$old_name'"\",\"new_name\":\""'$new_name'"\"}" "'$url'/update"; echo '''
             ;;
         'delete')
             [[ -z $2 ]] && return
-            command='curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/delete"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/delete"; echo '''
             ;;
         *)
             echo 'invalid option'
             ;;
     esac
-    eval "$command"
-    [[ "$action" == @('create'|'read'|'readall'|'update'|'delete') ]] && echo -e "\e[31mSUCCESS!!\e[0m" || echo -e '\e[31mFAILED!!\e[0m'
+    executed=$(eval "$command")
+    echo "$executed"
+    [[ $(echo "$executed" | jq -r .action.status) == "running" ]] && echo -e "\e[31mSUCCESS!!\e[0m" || echo -e '\e[31mFAILED!!\e[0m'
 }
 
 main() {

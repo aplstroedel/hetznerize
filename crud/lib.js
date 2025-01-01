@@ -47,7 +47,12 @@ export const readServer = async (name=null) => {
         result.servers.forEach(s => {
             servers.push(s.name)
         });
-        return servers
+        return {
+            action: {
+                status: 'running',
+                servers: servers
+            }
+        }
     } else {
         return 'no servers to show'
     }
