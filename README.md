@@ -18,8 +18,9 @@ hetz-control --prompt # An interactive for crud actions you want to perform like
 
 2. CLI / One-liners:
 ```bash
-hetz-control create NAME
-hetz-control read NAME
-hetz-control update NAME,NEW_NAME
-hetz-control delete NAME
+hetz-control create NAME # create a server
+hetz-control read NAME # list return a server id
+hetz-control readall # list all servers id,name,ip
+hetz-control update NAME,NEW_NAME # update a server its name
+hetz-control delete NAME # delete a server by name
 ```
