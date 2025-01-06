@@ -3,8 +3,10 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - '7001:7001'
+      - '${NODE_API_PORT}:${NODE_API_PORT}'
     environment:
-      - PORT=7001
+      - NODE_API_PORT=${NODE_API_PORT}
+    env_file:
+      - ./.env
     volumes:
       - './:/app'

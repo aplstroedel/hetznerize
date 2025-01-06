@@ -1,11 +1,11 @@
 // my functions
 import { createServer, readServer, updateServer, deleteServer } from './crud/lib.js'
 
-import formbody from '@fastify/formbody'
-import multipart from '@fastify/multipart'
-
 import Fastify from 'fastify'
 const fastify = Fastify()
+
+import formbody from '@fastify/formbody'
+import multipart from '@fastify/multipart'
 
 fastify.register(formbody)
 fastify.register(multipart)
@@ -46,4 +46,4 @@ fastify.post('/delete', async (req, rep)=>{
     rep.send(result)
 })
 
-fastify.listen({port: 7001, host: '0.0.0.0'})
+fastify.listen({port: process.env.NODE_API_PORT, host: '0.0.0.0'})

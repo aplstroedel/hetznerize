@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+source .env
 
 command=("$@")
 arr=("${command[@]}")
@@ -8,20 +9,22 @@ arr=("${command[@]}")
 args=( "${arr[@]/\-\-prompt/}" )
 
 cli() {
+    url="$NODE_API_URL"
+
     arg="$1"
     arg=$(echo "$arg" | xargs)
     echo -e "\e[31m__Initializing__\e[0m"
     case "$1" in
         'create')
             [[ -z $2 ]] && return
-            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/create"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$NODE_API_IP':'$NODE_API_PORT'/create"; echo '''
             ;;
         'read')
             [[ -z $2 ]] && return
-            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$NODE_API_IP':'$NODE_API_PORT'/read"; echo '''
             ;;
         'readall')
-            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/read"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$NODE_API_IP':'$NODE_API_PORT'/read"; echo '''
             ;;
         'update')
             IFS=','
@@ -29,11 +32,11 @@ cli() {
             [[ -z $arr[0] || -z $arr[1] ]] && return
             old_name=${arr[0]}
             new_name=${arr[1]}
-            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"old_name\":\""'$old_name'"\",\"new_name\":\""'$new_name'"\"}" "'$url'/update"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"old_name\":\""'$old_name'"\",\"new_name\":\""'$new_name'"\"}" "'$NODE_API_IP':'$NODE_API_PORT'/update"; echo '''
             ;;
         'delete')
             [[ -z $2 ]] && return
-            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$url'/delete"; echo '''
+            command='curl -s -X POST -H "Content-Type: application/json" -d "{\"name\":\"'$2'\"}" "'$NODE_API_IP':'$NODE_API_PORT'/delete"; echo '''
             ;;
         *)
             echo 'invalid option'
@@ -45,8 +48,6 @@ cli() {
 }
 
 main() {
-    url='http://0.0.0.0:7001'
-
     if [[ "$interactive" == true ]]
     then
         while true
