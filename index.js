@@ -46,4 +46,4 @@ fastify.post('/delete', async (req, rep)=>{
     rep.send(result)
 })
 
-fastify.listen({port: 7000, host: '0.0.0.0'})
+fastify.listen({port: 7001, host: '0.0.0.0'})

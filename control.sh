@@ -45,7 +45,7 @@ cli() {
 }
 
 main() {
-    url='http://0.0.0.0:7000'
+    url='http://0.0.0.0:7001'
 
     if [[ "$interactive" == true ]]
     then
