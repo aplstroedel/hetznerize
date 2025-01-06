@@ -4,8 +4,6 @@ services:
     restart: unless-stopped
     ports:
       - '${NODE_API_PORT}:${NODE_API_PORT}'
-    environment:
-      - NODE_API_PORT=${NODE_API_PORT}
     env_file:
       - ./.env
     volumes:
